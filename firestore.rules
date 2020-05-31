@@ -1,0 +1,13 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /clusters/{clusterID} {
+      allow read, write: if request.auth.uid == "admin";
+      allow read, write: if request.auth.uid in get(/databases/$(database)/documents/clusters/$(clusterID)).data.users;
+    }
+    match /users/{userID} {
+      // allow read, write: if exists(/databases/$(database)/documents/users/$(request.auth.uid))
+      allow read, write: if request.auth.uid == "nouser";
+    }
+  }
+}
