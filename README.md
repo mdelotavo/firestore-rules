@@ -1,5 +1,7 @@
 <!-- # cloud-firestore-security-rules-testing -->
 
+The current security rules in [firestore.rules](firestore.rules) and assertion in [test.js](test/test.js) show how to write unit tests. It asserts that a user should only be able to access a cluster if their `uid` exists in the target cluster's `users` array.
+
 ```
 npm install
 npx firebase --version # at least 6.3.0
